@@ -28,48 +28,49 @@ class _ModCalculatorState extends State<ModCalculator> {
     if (_baseInput > 0) {
       return (_uInput % _baseInput).toString();
     }
-    return 0.toString();
+    return '0';
   }
 
   String getQuotient() {
     if (_baseInput > 0) {
       return (_uInput ~/ _baseInput).toString();
     }
-    return 0.toString();
+    return '0';
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.only(top: 50),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(80.0),
-            child: Column(
-              children: [
-                Text(
-                  getMod(),
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  child: Text(
-                    'Quotient = ${getQuotient()}',
-                  ),
-                ),
-              ],
-            ),
+          Text(
+            getMod(),
+            style: Theme.of(context)
+                .textTheme
+                .headline3!
+                .copyWith(color: Colors.white),
           ),
+          const SizedBox(height: 20),
+          Text(
+            'Quotient = ${getQuotient()}',
+            style:
+                Theme.of(context).textTheme.headline4!.copyWith(fontSize: 20),
+          ),
+          const SizedBox(height: 40),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              new ModInput(stateUpdater: setUserInput),
-              Container(
-                width: 50,
-                child: Text('mod'),
+              ModInput(onKeyUp: setUserInput),
+              Text(
+                'mod',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(fontSize: 18),
               ),
-              new ModInput(stateUpdater: setBaseInput),
+              ModInput(onKeyUp: setBaseInput),
             ],
           ),
         ],

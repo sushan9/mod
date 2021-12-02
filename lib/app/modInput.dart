@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 
 class ModInput extends StatelessWidget {
-  final stateUpdater;
-  const ModInput({ Key? key, this.stateUpdater}) : super(key: key);
+  final onKeyUp;
+  const ModInput({Key? key, this.onKeyUp}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
     return Container(
-      width: (width - 50) / 3,
+      width: (width) / 4,
       child: TextFormField(
+        // cursorColor: Colors.grey,
+        // decoration: InputDecoration(),
+        style: Theme.of(context).textTheme.headline6,
+        textAlign: TextAlign.center,
         onChanged: (inp) {
           int? userInput = int.tryParse(inp);
 
           if (userInput == null) return;
 
-          stateUpdater(userInput);
+          onKeyUp(userInput);
         },
         keyboardType: TextInputType.number,
       ),

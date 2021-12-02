@@ -9,12 +9,10 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Modder',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Modder'),
+          title: const Text('Modder'),
           centerTitle: true,
         ),
         body: ModCalculator(),
