@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
 import 'app/app.dart';
+import 'package:adaptive_theme/adaptive_theme.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final savedThemeMode = await AdaptiveTheme.getThemeMode();
+  runApp(MyApp(savedThemeMode: savedThemeMode));
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final AdaptiveThemeMode? savedThemeMode;
+  MyApp({this.savedThemeMode});
+
   @override
   Widget build(BuildContext context) {
-    return App();
+    return AdaptiveTheme(
+      light: ThemeData.light(),
+      dark: ThemeData.dark(),
+      initial: savedThemeMode ?? AdaptiveThemeMode.light,
+      builder: (theme, darkTheme) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Modder',
+          theme: theme,
+          darkTheme: darkTheme,
+          home: App(),
+        );
+      },
+    );
   }
 }
