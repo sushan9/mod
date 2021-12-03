@@ -11,8 +11,6 @@ class ModInput extends StatelessWidget {
     return Container(
       width: (width) / 4,
       child: TextFormField(
-        // cursorColor: Colors.grey,
-        // decoration: InputDecoration(),
         style: Theme.of(context).textTheme.headline6,
         textAlign: TextAlign.center,
         onChanged: (inp) {

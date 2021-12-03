@@ -47,10 +47,7 @@ class _ModCalculatorState extends State<ModCalculator> {
         children: <Widget>[
           Text(
             getMod(),
-            style: Theme.of(context)
-                .textTheme
-                .headline3!
-                .copyWith(color: Colors.white),
+            style: Theme.of(context).textTheme.headline3,
           ),
           const SizedBox(height: 20),
           Text(
