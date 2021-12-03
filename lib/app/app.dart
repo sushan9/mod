@@ -14,22 +14,18 @@ class App extends StatelessWidget {
           PopupMenuButton(
             itemBuilder: (context) => [
               PopupMenuItem(
+                enabled: false,
                 child: ListTile(
-                  title: Text('Dark Mode'),
-                  trailing: StatefulBuilder(
-                    builder: (context, StateSetter setState) {
-                      return Switch(
-                        value: context.read<ThemeProvider>().isDarkMode,
-                        // value: Provider.of<ThemeProvider>(context).isDarkMode,
-                        onChanged: (value) {
-                          context.read<ThemeProvider>().toggle(value);
-                          // Provider.of<ThemeProvider>(context, listen: false)
-                          //     .toggle(value);
-                          setState(() {});
-                        },
-                      );
-                    },
+                  title: Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Text(
+                      'Dark Mode',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
+                  trailing: buildSwitch(),
                 ),
               ),
             ],
@@ -37,6 +33,23 @@ class App extends StatelessWidget {
         ],
       ),
       body: ModCalculator(),
+    );
+  }
+
+  StatefulBuilder buildSwitch() {
+    return StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        return Switch(
+          value: context.read<ThemeProvider>().isDarkMode,
+          // value: Provider.of<ThemeProvider>(context).isDarkMode,
+          onChanged: (value) {
+            context.read<ThemeProvider>().toggle(value);
+            // Provider.of<ThemeProvider>(context, listen: false)
+            //     .toggle(value);
+            setState(() {});
+          },
+        );
+      },
     );
   }
 }

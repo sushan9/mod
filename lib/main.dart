@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Modder',
             debugShowCheckedModeBanner: false,
-            themeMode: themeProvider.themeMode,
+            themeMode:
+                themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
             theme: MyThemes.light,
             darkTheme: MyThemes.dark,
             home: App(),
