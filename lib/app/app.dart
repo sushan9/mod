@@ -41,9 +41,11 @@ class App extends StatelessWidget {
       builder: (BuildContext context, StateSetter setState) {
         return Switch(
           value: context.read<ThemeProvider>().isDarkMode,
+          // backward compatible code
           // value: Provider.of<ThemeProvider>(context).isDarkMode,
           onChanged: (value) {
             context.read<ThemeProvider>().toggle(value);
+            // backward compatible code
             // Provider.of<ThemeProvider>(context, listen: false)
             //     .toggle(value);
             setState(() {});
