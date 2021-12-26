@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app/app.dart';
 import 'package:provider/provider.dart';
+import 'shared_pref/theme_shared_preference.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,14 +11,17 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(MyApp());
+  bool isDark = await ThemeSharedPreference.loadTheme();
+  runApp(MyApp(isDark));
 }
 
 class MyApp extends StatelessWidget {
+  MyApp(this.isDark);
+  final bool isDark;
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => ThemeProvider(),
+        create: (context) => ThemeProvider(isDark),
         builder: (context, child) {
           final themeProvider = Provider.of<ThemeProvider>(context);
           return MaterialApp(
