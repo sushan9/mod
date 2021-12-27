@@ -9,7 +9,7 @@ class ModInput extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Container(
-      width: (width) / 4,
+      width: (width - 50) / 3,
       child: TextFormField(
         style: Theme.of(context).textTheme.headline6,
         textAlign: TextAlign.center,
